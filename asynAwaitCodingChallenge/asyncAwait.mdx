@@ -1,0 +1,473 @@
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+  Step,
+  CodeSurferLayout
+} from "code-surfer";
+import { github, vsDark, nightOwl,oceanicNext,shadesOfPurple,ultramin,dracula } from "@code-surfer/themes";
+import { code, dark, future } from 'mdx-deck/themes'
+import "prismjs/components/prism-smalltalk";
+import { Split } from 'mdx-deck'
+import {Summarise} from './components/Summarise'
+
+<!-- Slide 0 -->
+<CodeSurfer theme={future}>
+
+```smalltalk title="Recap"
+1. Async Await is not a replacement for promises
+```
+
+```smalltalk title="Recap"
+1. Async Await is not a replacement for promises
+
+2. The purpose of async/await is to simplify 
+   the syntax around promise-based APIs.
+```
+
+</CodeSurfer>
+
+---
+<!-- Slide 1 -->
+<CodeSurfer theme={vsDark}>
+
+```js showNumbers title="Coding challenge" subtitle='Rewrite this using async await'
+function getUsersAvatar() {
+    fetch("/users")
+    .then((res) => res.json())
+    .then((users) => {
+        for (let user of users) {
+            fetch(`/users/${user.id}`)
+            .then((res) => res.json())
+            .then((data) => console.log(data.imageUrl));
+        }
+    });
+}
+```
+
+</CodeSurfer>
+
+---
+
+<!-- Slide 2 -->
+
+<CodeSurferColumns themes={[vsDark, dracula]} >
+{/* Slide 2 Step 1 */}
+<Step subtitle='create an async function getUsersAvatar'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js showNumbers
+async function getUsersAvatar() {
+
+
+
+
+
+
+
+
+
+
+}
+```
+
+</Step>
+{/* Slide 2 Step 2 */}
+<Step subtitle='fetch users from api'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js  showNumbers
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+
+
+
+
+
+
+
+
+}
+```
+
+</Step>
+{/* Slide 2 Step 3 */}
+<Step subtitle='loop over the users array'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js  showNumbers
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+
+    for(let user of users){
+
+    }
+
+
+
+
+
+
+
+}
+```
+
+</Step>
+{/* Slide 2 Step 4 */}
+<Step subtitle='Fetch details for each user and print the image url'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js  file="./asyncEx1.js" showNumbers
+```
+
+</Step>
+
+<Step>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js 1:12 file="./asyncEx1.js" showNumbers
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[vsDark, github]}>
+
+<Step>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+<img src="http://127.0.0.1:8085/parallel_calls.png" />
+
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[dracula, github]}>
+
+<Step>
+
+```js 1:12 showNumbers file="./asyncEx1.js"
+```
+
+<img src="http://127.0.0.1:8085/sequential_calls.png" />
+
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[vsDark, nightOwl]}>
+
+<Step subtitle='Refactor the async await function'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js showNumbers file="./asyncEx1.js"
+```
+
+</Step>
+
+<Step subtitle='Create a new async function'>
+
+```js showNumbers file="./promiseExample.js"
+```
+
+```js  showNumbers
+async function getAvatar(user){
+
+}
+
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    for(let user of users){
+        const res = await fetch(`/users/${user.id}`)
+        const data = await res.json();
+​
+        console.log(data.imageUrl)
+    }
+   
+}
+
+```
+
+</Step>
+
+<Step subtitle='Move the code inside loop in getAvatar() function'>
+
+```js file="./promiseExample.js"
+```
+
+```js
+async function getAvatar(user){
+    const res = await fetch(`/users/${user.id}`)
+    const data = await res.json();
+​
+    console.log(data.imageUrl)
+}
+
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    for(let user of users){
+         getAvatar(user)
+    }
+   
+}
+```
+
+</Step>
+
+<Step subtitle='Calls are now sent parallely instead of after another'>
+
+```js file="./promiseExample.js"
+```
+
+```js
+async function getAvatar(user){
+    const res = await fetch(`/users/${user.id}`)
+    const data = await res.json();
+​
+    console.log(data.imageUrl)
+}
+
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    for(let user of users){
+         getAvatar(user)
+    }
+   
+}
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[nightOwl,vsDark]}>
+
+<Step subtitle='Execution'>
+
+```js file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/v8.png" />
+
+</Step>
+
+<Step subtitle='push getUserAvatar on callstack'>
+
+```js 8 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec1.png" />
+
+</Step>
+
+<Step subtitle='when users call is completed'>
+
+```js 8:11 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec1.png" />
+
+</Step>
+
+<Step subtitle='loop through users array'>
+
+```js 8:12 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec1.png" />
+
+</Step>
+
+
+<Step subtitle='push getAvatar on callstack'>
+
+```js 13 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec2.png" />
+
+
+</Step>
+
+<Step subtitle='getAvatar function gets executed'>
+
+```js 1,6 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec2.png" />
+
+
+</Step>
+
+<Step subtitle='when await keyword is encountered, execution of getAvatar() is paused and it is removed from callstack'>
+
+```js 2 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec3.png" />
+
+
+</Step>
+
+<Step subtitle='thread of execution will move back to the main function to continue the loop'>
+
+```js 12 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec3.png" />
+
+
+</Step>
+
+<Step subtitle='we again call getAvatar()'>
+
+```js 12:14 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec4.png" />
+
+
+</Step>
+<Step subtitle='This continues till the end of the loop'>
+
+```js 1:2 file="./sol1.js" showNumbers
+```
+
+<img src="http://127.0.0.1:8085/exec5.png" />
+
+
+</Step>
+</CodeSurferColumns>
+
+---
+
+export const theme = vsDark
+
+<CodeSurferColumns themes={[nightOwl, vsDark]}>
+
+<Step>
+
+```js file="./sol1.js" showNumbers
+```
+
+<Summarise />
+
+</Step>
+
+
+</CodeSurferColumns>
+
+---
+<CodeSurferColumns themes={[vsDark, nightOwl]}>
+
+<Step subtitle='Another solution is to use forEach loop'>
+
+```js 1:11 file="./promiseExample.js" showNumbers
+```
+
+```js showNumbers
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    users.forEach(async (user) => {
+        
+    })
+}
+```
+
+</Step>
+
+<Step >
+
+```js file="./promiseExample.js" showNumbers
+```
+
+```js showNumbers
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    users.forEach(async (user) => {
+        const res = await fetch(`/users/${user.id}`)
+        const data = await res.json();
+
+        console.log(data.imageUrl)
+    })
+}
+```
+
+</Step>
+
+<Step subtitle="you can also use any other iterator function">
+
+```js file="./promiseExample.js" showNumbers
+```
+
+```js 1:11 showNumbers
+async function getUsersAvatar() {
+    const response = await fetch("/users")
+    const users = await response.json()
+​
+    users.map(async (user) => {
+        const res = await fetch(`/users/${user.id}`)
+        const data = await res.json();
+
+        console.log(data.imageUrl)
+    })
+}
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns themes={[vsDark, dracula, nightOwl]}>
+
+<Step>
+
+```js title='Using separate function' file="./sol1.js"
+```
+
+```js  title='Using .forEach' file="./sol2.js"
+```
+
+```js title='Using .map' file="./sol3.js"
+```
+</Step>
+
+</CodeSurferColumns>

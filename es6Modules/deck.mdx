@@ -1,0 +1,337 @@
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+} from "code-surfer";
+import { github, vsDark, nightOwl,oceanicNext,shadesOfPurple,ultramin,dracula } from "@code-surfer/themes";
+import { code, dark, future } from 'mdx-deck/themes'
+import "prismjs/components/prism-smalltalk"
+
+# ES6 Modules
+
+---
+
+<!-- Slide 1 -->
+<CodeSurfer theme={future}>
+
+```smalltalk title="ES6 Modules"
+1. The main purpose of ES6 modules is that you can use
+    different sections of code among different files
+```
+
+```smalltalk title="ES6 Modules"
+1. The main purpose of ES6 modules is that you can use
+    different sections of code among different files
+
+2. This way you can break your code in smaller pieces 
+   which makes it easy to read, write and reuse code
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```smalltalk title="ES6 Modules"
+Also this is not a feature of React or typescript 
+but it is a feature of Javascript which was included in 
+emascript 6
+```
+
+</CodeSurfer>
+
+---
+
+<!-- Slide 2 -->
+<CodeSurfer theme={nightOwl}>
+
+```js showNumbers file="./dateUtils.js"
+```
+</CodeSurfer>
+
+---
+
+<!-- Slide 3 -->
+<CodeSurfer theme={nightOwl}>
+
+```js showNumbers 2,13,15,17 file="./dateUtils.js"
+```
+</CodeSurfer>
+
+---
+
+<!-- Slide 4 -->
+<CodeSurferColumns themes={[nightOwl, dracula]} >
+{/* Slide 4 Step 1 */}
+<Step>
+
+```js showNumbers 2,13,15,17 file="./dateUtils.js"
+```
+
+```js showNumbers
+// main.js
+
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 2 */}
+<Step>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers
+// main.js
+
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 3 */}
+<Step>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 4 */}
+<Step>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js 2[8,29] showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 5 */}
+<Step>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2[9:17,20:28] showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 6 */}
+<Step>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2 showNumbers
+// main.js
+import {printDay as getWeekDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+</Step>
+{/* Slide 4 Step 7 */}
+<Step>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2[9:30] showNumbers
+// main.js
+import {printDay as getWeekDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 8 */}
+<Step>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers file="./main.js"
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```js showNumbers file="./dateUtils1.js"
+```
+
+```js 2,13 showNumbers file="./dateUtils2.js"
+```
+
+```js 2,13 showNumbers file="./dateUtils3.js"
+```
+
+```js 2,13,19 showNumbers file="./dateUtils3.js"
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns themes={[nightOwl, dracula]}>
+<Step>
+
+```js 2,13,19 showNumbers file="./dateUtils3.js"
+```
+
+```js showNumbers
+//main.js
+(function(){
+​
+    // print day and year
+    printDay()
+    printYear()
+   
+})()
+
+```
+
+</Step>
+<Step>
+
+```js 2,13,19 showNumbers file="./dateUtils3.js"
+```
+
+```js showNumbers
+import printDay , {printYear} from './dateUtils.js'
+(function(){
+​
+    // print day and year
+    printDay()
+    printYear()
+   
+})()
+
+```
+
+</Step>
+<Step>
+
+```js 2,13,19 showNumbers file="./dateUtils3.js"
+```
+
+```js 1[8:15] showNumbers
+import printDay , {printYear} from './dateUtils.js'
+(function(){
+​
+    // print day and year
+    printDay()
+    printYear()
+   
+})()
+
+```
+
+</Step>
+<Step>
+
+```js 2,13,19 showNumbers file="./dateUtils3.js"
+```
+
+```js 1[8:17] showNumbers
+import getWeekDay , {printYear} from './dateUtils.js'
+(function(){
+​
+    // print day and year
+    getWeekDay()
+    printYear()
+   
+})()
+
+```
+
+</Step>
+</CodeSurferColumns>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```html 8 file='./index1.html'
+
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```html 8 file='./index.html'
+
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={nightOwl} title='Summarize'>
+
+```smalltalk title='Summarize'
+1. You can have multiple named exports in a file but only have one default export.
+```
+```smalltalk title='Summarize'
+1. You can have multiple named exports in a file but only have one default export.
+
+2. You need to import named exports in curly braces whereas
+   in case of default exports you can import without curly braces
+```
+
+```smalltalk title='Summarize'
+1. You can have multiple named exports in a file but only have one default export.
+
+2. You need to import named exports in curly braces whereas
+   in case of default exports you can import without curly braces
+
+3. Lastly you can import default exported value with any alias.
+   However with named exports you have to use the same name or use as keyword
+   if you want to use another name
+```
+
+</CodeSurfer>
+

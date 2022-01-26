@@ -1,0 +1,182 @@
+import {
+  CodeSurfer,
+  CodeSurferColumns,
+} from "code-surfer";
+import { github, vsDark, nightOwl,oceanicNext,shadesOfPurple,ultramin,dracula } from "@code-surfer/themes";
+import { code, dark, future } from 'mdx-deck/themes'
+import "prismjs/components/prism-smalltalk"
+
+# ES6 Modules
+
+---
+
+<!-- Slide 1 -->
+<CodeSurfer theme={future}>
+
+```smalltalk title="ES6 Modules"
+1. The main purpose of es6 modules is to allow you import and export
+   different sections of code from different files into other files.
+```
+
+```smalltalk title="ES6 Modules"
+1. The main purpose of es6 modules is to allow you import and export
+   different sections of code from different files into other files.
+
+2. This way you can break your code in smaller pieces
+   which makes it easy to read, write and reuse code
+```
+
+</CodeSurfer>
+
+---
+
+<!-- Slide 2 -->
+<CodeSurfer theme={nightOwl}>
+
+```js showNumbers file="./dateUtils.js"
+```
+</CodeSurfer>
+
+---
+
+<!-- Slide 3 -->
+<CodeSurfer theme={nightOwl}>
+
+```js showNumbers 2,13,15,17 file="./dateUtils.js"
+```
+</CodeSurfer>
+
+---
+
+<!-- Slide 4 -->
+<CodeSurferColumns themes={[nightOwl, dracula]} >
+{/* Slide 4 Step 1 */}
+<Step subtitle='import date functions in main.js'>
+
+```js showNumbers 2,13,15,17 file="./dateUtils.js"
+```
+
+```js showNumbers
+// main.js
+
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 2 */}
+<Step subtitle='Named exports'>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers
+// main.js
+
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 3 */}
+<Step subtitle='import named exports'>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 5 */}
+<Step subtitle='inside curly braces'>
+
+```js 2,13,15,17 showNumbers file="./dateUtils1.js"
+```
+
+```js 2[8,29] showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 5 */}
+<Step subtitle='same name'>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2[9:17,20:28] showNumbers
+// main.js
+import {printDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 6 */}
+<Step subtitle='change name'>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2[9:30] showNumbers
+// main.js
+import {printDay as getWeekDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+</Step>
+{/* Slide 4 Step 7 */}
+<Step subtitle='change name'>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js 2[9:30] showNumbers
+// main.js
+import {printDay as getWeekDay , printYear} from './dateUtils.js'
+(function(){
+
+    // print day and year
+   
+})()
+```
+
+</Step>
+{/* Slide 4 Step 4 */}
+<Step subtitle='use imported functions'>
+
+```js 2[14:22],15[14:22] showNumbers file="./dateUtils1.js"
+```
+
+```js showNumbers file="./main.js"
+```
+
+</Step>
+
+</CodeSurferColumns>

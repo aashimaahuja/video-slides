@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "live-server ./images --port=8085 && mdx-deck asyncAwait.mdx",
+    "start": "mdx-deck asyncAwait.mdx",
+    "build": "mdx-deck build asyncAwait.mdx",
+    "test": "echo \"there are no tests\""
+  },
+  "devDependencies": {
+    "code-surfer": "3.1.0",
+    "mdx-deck": "3.0.13"
+  },
+  "name": "my-deck"
+}
