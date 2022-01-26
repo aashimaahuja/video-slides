@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "live-server ./images --port=8085 && mdx-deck asyncAwait.mdx",
-    "start": "mdx-deck asyncAwait.mdx",
-    "build": "mdx-deck build asyncAwait.mdx",
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx",
     "test": "echo \"there are no tests\""
   },
   "devDependencies": {
